@@ -11,6 +11,7 @@
     </head>
     <body>
         <h1><%=titulo%></h1>
+        <p><a href="<%=request.getContextPath()%>/cursos/form">crear [+]</a></p>
         <form action="<%=request.getContextPath()%>/cursos/buscar" method="post">
             <input type="text" name="nombre"/>
             <input type="submit" value="Buscar"/>
@@ -21,6 +22,8 @@
                 <th>nombre</th>
                 <th>instructor</th>
                 <th>duracion</th>
+                <th>editar</th>
+                <th>eliminar</th>
             </tr>
             <% for(Curso c: cursos){%>
             <tr>
@@ -28,6 +31,9 @@
                 <td><%=c.getNombre()%></td>
                 <td><%=c.getInstructor()%></td>
                 <td><%=c.getDuracion()%></td>
+                <td><a href="<%=request.getContextPath()%>/cursos/form?id=<%=c.getId()%>">editar</a></td>
+                <td><a onclick="return confirm('esta seguro que desea eliminar?');"
+                       href="<%=request.getContextPath()%>/cursos/eliminar?id=<%=c.getId()%>">eliminar</a></td>
             </tr>
             <%}%>
         </table>
